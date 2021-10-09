@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, FlatList } from 'react-native';
 import { ListItem } from 'react-native-elements';
 
-function Menu(props) {
 
+
+class Menu extends Component {
+
+    static navigationOptions = {
+        title: 'Menu'
+    };
+
+    
+render(){
     const renderMenuItem = ({item, index}) => {
 
+     
         return (
                 <ListItem
                     key={index}
@@ -17,13 +26,20 @@ function Menu(props) {
         );
     };
 
+
+       
+
     return (
+
+        
             <FlatList 
                 data={props.dishes}
                 renderItem={renderMenuItem}
                 keyExtractor={item => item.id.toString()}
                 />
     );
+}
+   
 }
 
 
