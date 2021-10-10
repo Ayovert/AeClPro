@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Platform, ImageBackground } from 'react-native';
 import Menu from './MenuComponent';
-import { DISHES } from '../shared/dishes';
 import Home from './HomeComponent';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
 const Stack = createNativeStackNavigator();
+ const Tab = createBottomTabNavigator();
+
+ const BottomTabs = () =>{
+  return(
+    <Tab.Navigator>
+      <Tab.Screen name='home' component={Home} />
+      <Tab.Screen name='menu' component={Menu}/>
+
+    </Tab.Navigator>
+  )
+};
 
 const MyStack = () => {
   return (
@@ -19,20 +29,24 @@ const MyStack = () => {
           component={Home}
           options={{ title: 'Welcome' }}
         />
-        <Stack.Screen name="Menu" component={Menu} />
+        <Stack.Screen name="Menu" component={Menu}
+        
+        />
       </Stack.Navigator>
+
+      <BottomTabs />
+      
     </NavigationContainer>
   );
 };
 
 
+
+
+
+
 class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dishes: DISHES
-    };
-  }
+ 
 
 
   
@@ -43,7 +57,6 @@ class Main extends Component {
 
     return (
       <View style={{height:'100%'}}>
-
 
        <MyStack />
        

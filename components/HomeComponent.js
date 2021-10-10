@@ -26,7 +26,7 @@ class Home extends Component {
             <Button
               title="LET'S START"
               style={styles.button}
-              onPress={() => navigation.navigate('Menu')}
+              onPress={() => this.props.navigation.navigate('Menu')}
             />
           </View>
         </View>
