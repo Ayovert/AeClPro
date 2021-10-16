@@ -1,10 +1,14 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, Image, ImageBackground, FlatList, ScrollView } from 'react-native';
 import { ListItem, Avatar, Icon } from 'react-native-elements';
+import TouchableScale from 'react-native-touchable-scale';
 
 
 
-class Home extends Component {
+
+
+class Clans extends Component {
 
 
 
@@ -13,33 +17,47 @@ class Home extends Component {
 
     const list = [
       {
-        title: '1',
-        icon: 'av-timer',
-        type :''
+        title: 'Akatsuki',
+        icon: 'shirt',
+        type :'ionicon'
       },
       {
-        title: '2',
-        icon: 'flight-takeoff',
-        type :''
+        title: 'Uzumaki',
+        icon: 'cutlery',
+        type :'font-awesome'
       },
       {
-        title: '3',
+        title: 'Demon Slayers',
         icon: 'menu',
         type :''
       },
       {
-        title: '4',
+        title: 'Titans',
         icon: 'heartbeat',
         type: 'font-awesome'
       }
     ]
+
+
     
     
-    const RenderMenuItem2 = ({item}) =>{
+    const RenderClanCategories = ({item}) =>{
       return(
         <View style={styles.listBlockStyle}>
-        <ListItem bottomDivider>
-          <Icon style={styles.listItemStyle} name={item.icon} type= {item.type ?? null}/>
+        <ListItem bottomDivider
+        
+  Component={TouchableScale}
+  friction={90} //
+  tension={100} // These props are passed to the parent component (here TouchableScale)
+  activeScale={0.95} //
+  linearGradientProps={{
+    colors: ['#00ccff', '#0033ff'],
+    start: { x: 2, y: 2 },
+    end: { x: 0.2, y: 2 },
+  }}
+  ViewComponent={LinearGradient}
+        >
+          <Icon  style={styles.listItemStyle} name={item.icon} type= {item.type ?? null}/>
           <ListItem.Content>
             <ListItem.Title>{item.title} </ListItem.Title>
           </ListItem.Content>
@@ -51,19 +69,12 @@ class Home extends Component {
 
     return (
       <ScrollView>
-        <View style={styles.overlay}></View>
-        <Image source={require('./images/clans.jpg')} style={styles.image} />
 
-        <View style={styles.textContainer}>
-          <Text style={styles.h2}>Welcome To</Text>
-          <Text style={styles.h1}>Anime Clans</Text>
-        </View>
-
-<View>
+<View style={styles.container}>
               <FlatList
               
                 data={list}
-                renderItem={RenderMenuItem2}
+                renderItem={RenderClanCategories}
               
                 numColumns= {2}
                 />
@@ -165,7 +176,7 @@ const styles = StyleSheet.create({
     // flex: 1
   }
 });
-export default Home;
+export default Clans;
 //<Image  style={styles.image} source={require('./images/clans.jpg')} onPress={() => navigate('Dishdetail', { dishId: item.id })}
 
 
